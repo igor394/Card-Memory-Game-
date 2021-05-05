@@ -10,7 +10,7 @@ const Counter = ({param, result}) => {
     useEffect(() => {
         if (!list.find(i => i.state === false)) {
             result(true)
-            dispatch(saveTime(counter))
+            dispatch(saveTime(param - counter))
         } else {
             counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
             if (counter === 0) result(true);

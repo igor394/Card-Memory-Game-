@@ -6,14 +6,8 @@ const Menu = ({begin}) => {
     const dispatch = useDispatch();
     const store = useSelector(state => state.memory);
 
-    const hendlerOne = useCallback((e) => {
-        dispatch(selectLevel(e.target.id))
-    }, [])
-    const hendlerTwo = useCallback((e) => {
-        dispatch(selectLevel(e.target.id))
-    }, [])
-    const hendlerThree = useCallback((e) => {
-        dispatch(selectLevel(e.target.id))
+    const hendlerSelect = useCallback((id)=> () => {
+        dispatch(selectLevel(id))
     }, [])
     const hendlerStart = useCallback(() => {
         begin(true)
@@ -26,13 +20,13 @@ const Menu = ({begin}) => {
                 <div><h1>Select a level to start the game!</h1></div>
                 <div className='menu-btn'>
                     <div>
-                        <button className='btn-select' onClick={hendlerOne} id='beginner'>beginner</button>
+                        <button className='btn-select' onClick={hendlerSelect('beginner')}>beginner</button>
                     </div>
                     <div>
-                        <button className='btn-select' onClick={hendlerTwo} id='intermediate'>intermediate</button>
+                        <button className='btn-select' onClick={hendlerSelect('intermediate')}>intermediate</button>
                     </div>
                     <div>
-                        <button className='btn-select' onClick={hendlerThree} id='advanced'>advanced</button>
+                        <button className='btn-select' onClick={hendlerSelect('advanced')}>advanced</button>
                     </div>
                 </div>
             </div> : <div>

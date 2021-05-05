@@ -6,7 +6,7 @@ const Results = ({restart}) => {
 
     return (
         <>
-            {store.counter ? <h2>You completed a {store.level} level in {store.counter} seconds by
+            {store.timeDown ? <h2>You completed a {store.level} level in {store.timeDown} seconds by
                     making {Math.floor(store.step / 2)} moves </h2>
                 :
                 <h2>Time is up((( You not completed a {store.level} level spending on

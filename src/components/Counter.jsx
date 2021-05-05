@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {saveTime} from '../reducers/cardSlice';
 import {useSelector, useDispatch} from "react-redux";
 
 const Counter = ({param, result}) => {
     const [counter, setCounter] = useState(param);
     const list = useSelector(state => state.memory.list);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const isCompleted = useMemo(() => !list.find(i => i.state === false), [list]);
 
     useEffect(() => {
-        if (!list.find(i => i.state === false)) {
+        if (isCompleted) {
             result(true)
             dispatch(saveTime(param - counter))
         } else {

@@ -2,9 +2,10 @@ import './App.css';
 import Menu from "./components/Menu";
 import CardList from "./components/CardList";
 import React, {useCallback, useState} from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import Results from "./components/Results";
 import Counter from "./components/Counter";
+import {selectLevel, stepStart, listRestart} from './reducers/cardSlice';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     const [result, setResult] = useState(false)
     const [counter, setCounter] = useState(null);
     const handlerRes = useCallback((params) => setResult(params), []);
+    const dispatch = useDispatch()
 
     const begin = useCallback((params) => {
         setStart(params);
@@ -24,18 +26,27 @@ function App() {
                 setCounter(60);
                 break;
             case 'advanced':
-                setCounter(30);
+                setCounter(5);
                 break;
             default:
                 alert("error");
         }
     }, [level])
 
+    const restart = () => {
+        dispatch(selectLevel(null))
+        dispatch(stepStart())
+        dispatch(listRestart())
+        setStart(false)
+        setResult(false)
+    }
+
     return (
-        <>
-            {result ? <Results/> : (start ? <><Counter result={handlerRes} param={counter}/><CardList/></> :
+        <div className='wraper'>
+            {result ? <Results restart={restart}/> : (start ? <><Counter result={handlerRes}
+                                                                         param={counter}/><CardList/></> :
                 <Menu begin={begin}/>)}
-        </>
+        </div>
     );
 }
 

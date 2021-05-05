@@ -6,34 +6,40 @@ const Menu = ({begin}) => {
     const dispatch = useDispatch();
     const store = useSelector(state => state.memory);
 
-
-    const hendlerOne=useCallback((e)=>{
+    const hendlerOne = useCallback((e) => {
         dispatch(selectLevel(e.target.id))
-    },[])
-    const hendlerTwo=useCallback((e)=>{
+    }, [])
+    const hendlerTwo = useCallback((e) => {
         dispatch(selectLevel(e.target.id))
-    },[])
-    const hendlerThree=useCallback((e)=>{
+    }, [])
+    const hendlerThree = useCallback((e) => {
         dispatch(selectLevel(e.target.id))
-    },[])
-    const hendlerStart=useCallback(()=>{
+    }, [])
+    const hendlerStart = useCallback(() => {
         begin(true)
-    },[begin])
+    }, [begin])
 
 
     return (
-        <div className='wraper'>
-            <div className='start-menu'>
-                {!store.level ? <div>
-                    <h3>Select a level to start the game!</h3>
-                    <button className='btn-select' onClick={hendlerOne} id='beginner'>beginner </button>
-                    <button className='btn-select' onClick={hendlerTwo} id='intermediate'>intermediate </button>
-                    <button className='btn-select' onClick={hendlerThree} id='advanced'>advanced</button>
-                </div> : <div>
-                    <button className='btn-select' onClick={hendlerStart} id=''>start</button>
-                </div>}
-
-            </div>
+        <div className='start-menu'>
+            {!store.level ? <div className='menu-title'>
+                <div><h1>Select a level to start the game!</h1></div>
+                <div className='menu-btn'>
+                    <div>
+                        <button className='btn-select' onClick={hendlerOne} id='beginner'>beginner</button>
+                    </div>
+                    <div>
+                        <button className='btn-select' onClick={hendlerTwo} id='intermediate'>intermediate</button>
+                    </div>
+                    <div>
+                        <button className='btn-select' onClick={hendlerThree} id='advanced'>advanced</button>
+                    </div>
+                </div>
+            </div> : <div>
+                <div>
+                    <button className='btn-select' onClick={hendlerStart}>start</button>
+                </div>
+            </div>}
         </div>
     );
 };

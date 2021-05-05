@@ -18,8 +18,8 @@ const Counter = ({param, result}) => {
     }, [counter]);
 
     return (
-        <div>
-            {counter}
+        <div style={{paddingTop: '20px'}}>
+            <span>time to complete: {counter}</span>
         </div>
     );
 };

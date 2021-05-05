@@ -36,9 +36,24 @@ export const cardSlice = createSlice({
         },
         saveTime: (state, data) => {
             state.counter = data.payload
+        },
+        stepStart: (state, data) => {
+            state.step = 0;
+        },
+        listRestart: (state, data) => {
+            state.list = createNewList()
         }
 
     }
 });
-export const {itemTrue, itemFalse, itemCheckState, stepMove, selectLevel, saveTime} = cardSlice.actions;
+export const {
+    itemTrue,
+    itemFalse,
+    itemCheckState,
+    stepMove,
+    selectLevel,
+    saveTime,
+    stepStart,
+    listRestart
+} = cardSlice.actions;
 export default cardSlice.reducer;
